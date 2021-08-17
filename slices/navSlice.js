@@ -23,7 +23,7 @@ name: 'nav',
   },
 })
 
-export const { setOrigin, setDestion, setTravelTimeinformation } = navSlice.actions;
+export const { setOrigin, setDestination, setTravelTimeinformation } = navSlice.actions;
 
 
 export const selectOrigin = (state) => state.nav.origin;

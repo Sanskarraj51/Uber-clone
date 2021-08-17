@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
+import { KeyboardAvoidingView, Platform } from 'react-native';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import HomeScreen from './Screens/HomeScreen';
@@ -8,6 +8,7 @@ import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import MapScreens from './Screens/MapScreen';
+import tw from 'tailwind-react-native-classnames';
 
 
 export default function App() {
@@ -17,6 +18,10 @@ const Stack = createNativeStackNavigator();
    <Provider store={store}>
      <NavigationContainer>
       <SafeAreaProvider>
+        <KeyboardAvoidingView
+         behavior={Platform.OS === "ios" ? "padding": "height"} style={tw`flex-1`}
+         keyboardVerticalOffset={Platform.OS === "ios" ? -64 : 0}
+         >
 
          <Stack.Navigator>
 
@@ -36,10 +41,10 @@ const Stack = createNativeStackNavigator();
           headerShown:false,
          }}
         />
-       
-
+  
          </Stack.Navigator>
 
+       </KeyboardAvoidingView>
        
       </SafeAreaProvider>
      </NavigationContainer>
@@ -48,11 +53,4 @@ const Stack = createNativeStackNavigator();
   );
  }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+
